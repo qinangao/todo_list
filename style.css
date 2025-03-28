@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gainsboro;
+}
+.app {
+  width: 100%;
+  margin: 200px auto;
+  max-width: 600px;
+  background-color: white;
+  padding: 100px 50px;
+}
+.title__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 20px;
+}
+.title__container h1 {
+  font-size: 35px;
+}
+.logo {
+  width: 40px;
+}
+.input__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(237, 238, 240);
+  border-radius: 20px;
+}
+input {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  border-radius: 20px;
+  padding-left: 20px;
+  height: 40px;
+  outline: none;
+}
+.add__btn {
+  background-color: rgb(255, 88, 69);
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 90px;
+  font-size: 15px;
+}
+.tasks__conotainer {
+  margin-top: 10px;
+}
+ul li {
+  list-style: none;
+  padding: 12px 8px 12px 50px;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+}
+ul li::before {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(./images/unchecked.png);
+  background-size: cover;
+  background-position: center;
+  left: 8px;
+  top: 10px;
+}
+ul li.checked {
+  color: #555;
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  background-image: url(./images/check.png);
+}
