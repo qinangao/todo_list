@@ -79,6 +79,7 @@ ul li::before {
   left: 8px;
   top: 10px;
 }
+
 ul li.checked {
   color: #555;
   text-decoration: line-through;
@@ -86,4 +87,12 @@ ul li.checked {
 
 ul li.checked::before {
   background-image: url(./images/check.png);
+}
+
+span {
+  color: rgb(255, 88, 69);
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
