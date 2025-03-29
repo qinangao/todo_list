@@ -18,6 +18,7 @@ body {
   max-width: 600px;
   background-color: white;
   padding: 100px 50px;
+  border-radius: 20px;
 }
 .title__container {
   display: flex;
@@ -67,26 +68,29 @@ ul li {
   position: relative;
   cursor: pointer;
 }
-ul li::before {
+.check__btn {
   content: "";
   position: absolute;
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-image: url(./images/unchecked.png);
   background-size: cover;
   background-position: center;
   left: 8px;
   top: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
-
-ul li.checked {
-  color: #555;
-  text-decoration: line-through;
+.uncheck {
+  background-image: url(./images/unchecked.png);
 }
-
-ul li.checked::before {
+.checked {
   background-image: url(./images/check.png);
+}
+.completed {
+  text-decoration: line-through;
+  color: #555;
 }
 
 span {
