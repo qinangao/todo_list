@@ -12,6 +12,10 @@ body {
   align-items: center;
   background-color: gainsboro;
 }
+main {
+  width: 100%;
+  padding: 30px;
+}
 .app {
   width: 100%;
   margin: 200px auto;
@@ -98,5 +102,62 @@ span {
   font-size: 30px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 3px;
+}
+
+.edit__btn {
+  position: absolute;
+  top: 13px;
+  right: 50px;
+  width: 70px;
+  color: rgb(255, 88, 69);
+  font-weight: bold;
+  background-color: aliceblue;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.edit__btn:hover {
+  transform: scale(1.2);
+}
+.text {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    font-size: 13px;
+  }
+  .title__container h1 {
+    font-size: 31px;
+  }
+  input {
+    padding-left: 10px;
+  }
+  .app {
+    padding: 50px 30px;
+  }
+  .edit__btn {
+    position: absolute;
+    right: 30px;
+    width: 50px;
+    top: 12px;
+    font-size: 13px;
+  }
+  span {
+    top: 1px;
+  }
+  .check__btn {
+    height: 20px;
+    width: 20px;
+    left: 8px;
+    top: 12px;
+  }
+  ul li {
+    padding-left: 35px;
+  }
+  .text {
+    max-width: 130px;
+  }
 }
