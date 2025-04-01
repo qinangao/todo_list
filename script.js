@@ -65,11 +65,15 @@ list.addEventListener("click", function (e) {
   }
   //Delete tasks
   if (e.target.classList.contains("delete__btn")) {
-    taskItem.remove();
+    // console.log(tasksData, taskIndex);
+    tasksData.splice(taskIndex, 1);
+    setLocalStorage();
+    renderTasks();
   }
   //Edit tasks
   if (e.target.classList.contains("edit__btn")) {
-    let taskText = e.target.previousElementSibling;
+    let taskText = taskItem.querySelector(".text");
+    // console.log(taskText);
     if (taskText.isContentEditable) {
       if (taskText.innerText.trim() === "") {
         alert("Task cannot be emply");
@@ -77,13 +81,13 @@ list.addEventListener("click", function (e) {
       } else {
         taskText.setAttribute("contenteditable", "false");
         e.target.innerText = "Edit";
+        tasksData[taskIndex].text = taskText.innerText;
         setLocalStorage();
       }
     } else {
       taskText.setAttribute("contenteditable", "true");
       taskText.focus();
       e.target.innerText = "Save";
-      setLocalStorage();
     }
   }
 });
