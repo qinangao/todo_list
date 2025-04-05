@@ -5,63 +5,68 @@ const list = document.querySelector("ul");
 
 //Set local storage
 let tasksData = JSON.parse(localStorage.getItem("todo")) || [];
+
 const setLocalStorage = function () {
   localStorage.setItem("todo", JSON.stringify(tasksData));
+};
+
+const generateTaskHTML = function (task, index) {
+  return `
+     <li data-index="${index}" ${task.completed ? 'class="completed"' : ""}>
+        <button class="check__btn ${
+          task.completed ? "checked" : "uncheck"
+        }"></button>
+        <p class="text">${task.text}</p>
+        <button class="edit__btn">Edit</button>
+        <span class="delete__btn">&times;</span>
+     </li>
+ `;
+};
+
+//Render local storage tasks
+const renderTasks = function () {
+  list.innerHTML = tasksData.map(generateTaskHTML).join("");
+};
+renderTasks();
+
+const addTask = function (text) {
+  const taskObj = {
+    text,
+    completed: false,
+  };
+  tasksData.push(taskObj);
+  setLocalStorage();
+  renderTasks();
 };
 
 //Handle submit
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+  const taskText = inputTask.value;
   //Alert if input is emply
-  if (inputTask.value === "") {
+  if (!taskText) {
     alert("Input can not be emply");
     return;
   }
-  const taskObj = {
-    text: inputTask.value,
-    completed: false,
-  };
-
-  //Add tasks:
-  const addTask = function () {
-    let html = `<li><button class="check__btn uncheck"></button><p class="text">${inputTask.value}</p>
-    <button class="edit__btn">Edit</button>
-    <span class="delete__btn">&times;</span></li>`;
-    list.insertAdjacentHTML("beforeend", html);
-    inputTask.value = "";
-  };
-  tasksData.push(taskObj);
-  addTask();
-  setLocalStorage();
+  //Else add tasks
+  addTask(taskText);
+  taskText = "";
 });
-//Render local storage tasks
-const renderTasks = function () {
-  list.innerHTML = "";
-  tasksData.forEach((task, index) => {
-    let html = `<li data-index="${index}"  ${
-      task.completed ? 'class="completed"' : ""
-    }>
-  <button class="check__btn ${task.completed ? "checked" : "uncheck"}"></button>
-  <p class="text">${task.text}</p>
-  <button class="edit__btn">Edit</button>
-  <span class="delete__btn">&times;</span>
-</li>`;
-    list.insertAdjacentHTML("beforeend", html);
-  });
-};
-renderTasks();
 
 //Handle check and delete
 list.addEventListener("click", function (e) {
   const taskItem = e.target.closest("li");
+  if (!taskItem) return;
+
   const taskIndex = Number(taskItem.dataset.index);
+
   //Check tasks
   if (e.target.classList.contains("check__btn")) {
     tasksData[taskIndex].completed = !tasksData[taskIndex].completed;
-    console.log(taskItem);
-    e.target.classList.toggle("checked");
-    taskItem.classList.toggle("completed");
+    console.log(tasksData);
+
     setLocalStorage();
+    renderTasks();
   }
   //Delete tasks
   if (e.target.classList.contains("delete__btn")) {
@@ -72,21 +77,23 @@ list.addEventListener("click", function (e) {
   }
   //Edit tasks
   if (e.target.classList.contains("edit__btn")) {
-    let taskText = taskItem.querySelector(".text");
-    // console.log(taskText);
-    if (taskText.isContentEditable) {
-      if (taskText.innerText.trim() === "") {
+    const taskEl = taskItem.querySelector(".text");
+    const isEditing = taskEl.isContentEditable;
+    const newText = taskEl.innerText.trim();
+    // console.log(taskEl);
+    if (isEditing) {
+      if (!newText) {
         alert("Task cannot be emply");
-        taskText.focus();
-      } else {
-        taskText.setAttribute("contenteditable", "false");
-        e.target.innerText = "Edit";
-        tasksData[taskIndex].text = taskText.innerText;
-        setLocalStorage();
+        taskEl.focus();
+        return;
       }
+      taskEl.setAttribute("contenteditable", "false");
+      e.target.innerText = "Edit";
+      tasksData[taskIndex].text = newText;
+      setLocalStorage();
     } else {
-      taskText.setAttribute("contenteditable", "true");
-      taskText.focus();
+      taskEl.setAttribute("contenteditable", "true");
+      taskEl.focus();
       e.target.innerText = "Save";
     }
   }
