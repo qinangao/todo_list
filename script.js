@@ -42,7 +42,7 @@ const addTask = function (text) {
 //Handle submit
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  const taskText = inputTask.value;
+  let taskText = inputTask.value.trim();
   //Alert if input is emply
   if (!taskText) {
     alert("Input can not be emply");
@@ -50,7 +50,7 @@ form.addEventListener("submit", function (e) {
   }
   //Else add tasks
   addTask(taskText);
-  taskText = "";
+  inputTask.value = "";
 });
 
 //Handle check and delete
