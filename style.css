@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -11,11 +12,14 @@ body {
   justify-content: center;
   align-items: center;
   background-color: gainsboro;
+  font-size: 16px;
 }
+
 main {
   width: 100%;
   padding: 30px;
 }
+
 .app {
   width: 100%;
   margin: 200px auto;
@@ -24,6 +28,7 @@ main {
   padding: 100px 50px;
   border-radius: 20px;
 }
+
 .title__container {
   display: flex;
   justify-content: flex-start;
@@ -31,12 +36,15 @@ main {
   gap: 15px;
   padding-bottom: 20px;
 }
+
 .title__container h1 {
   font-size: 35px;
 }
+
 .logo {
   width: 40px;
 }
+
 .input__container {
   display: flex;
   justify-content: space-between;
@@ -44,8 +52,9 @@ main {
   background-color: rgb(237, 238, 240);
   border-radius: 20px;
 }
+
 input {
-  width: 100%;
+  flex: 1;
   border: none;
   background-color: transparent;
   border-radius: 20px;
@@ -53,18 +62,26 @@ input {
   height: 40px;
   outline: none;
 }
+
+.add__btn,
+.edit__btn {
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform 0.2s ease;
+}
+
 .add__btn {
   background-color: rgb(255, 88, 69);
   border: 1px solid black;
-  border-radius: 20px;
-  cursor: pointer;
-  height: 40px;
   width: 90px;
-  font-size: 15px;
+  height: 40px;
 }
+
 .tasks__conotainer {
   margin-top: 10px;
 }
+
 ul li {
   list-style: none;
   padding: 12px 8px 12px 50px;
@@ -72,8 +89,8 @@ ul li {
   position: relative;
   cursor: pointer;
 }
+
 .check__btn {
-  content: "";
   position: absolute;
   height: 28px;
   width: 28px;
@@ -86,77 +103,88 @@ ul li {
   cursor: pointer;
   background-color: transparent;
 }
+
 .uncheck {
   background-image: url(./images/unchecked.png);
 }
+
 .checked {
   background-image: url(./images/check.png);
 }
+
 .completed {
   text-decoration: line-through;
   color: #555;
 }
 
-span {
-  color: rgb(255, 88, 69);
-  font-size: 30px;
+span,
+.edit__btn {
   position: absolute;
+  top: 12px;
+  color: rgb(255, 88, 69);
+  font-weight: bold;
+}
+
+span {
+  font-size: 30px;
   right: 0;
   top: 3px;
 }
 
 .edit__btn {
-  position: absolute;
-  top: 13px;
   right: 50px;
   width: 70px;
-  color: rgb(255, 88, 69);
-  font-weight: bold;
   background-color: aliceblue;
-  font-size: 15px;
-  border-radius: 20px;
-  cursor: pointer;
 }
+
 .edit__btn:hover {
   transform: scale(1.2);
 }
+
 .text {
   max-width: 300px;
   word-wrap: break-word;
 }
 
+/* Responsive */
 @media screen and (max-width: 576px) {
   body {
     font-size: 13px;
   }
+
   .title__container h1 {
     font-size: 31px;
   }
+
   input {
     padding-left: 10px;
   }
+
   .app {
     padding: 50px 30px;
   }
+
   .edit__btn {
-    position: absolute;
     right: 30px;
     width: 50px;
     top: 12px;
     font-size: 13px;
   }
+
   span {
     top: 1px;
   }
+
   .check__btn {
     height: 20px;
     width: 20px;
-    left: 8px;
     top: 12px;
   }
+
   ul li {
     padding-left: 35px;
   }
+
   .text {
     max-width: 130px;
   }
